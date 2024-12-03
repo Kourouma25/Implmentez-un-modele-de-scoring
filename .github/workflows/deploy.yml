@@ -26,7 +26,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    # Authentification avec Google Cloud (assurez-vous d'avoir votre fichier de clé JSON pour Google Cloud)
+    # Authentification avec Google Cloud
     - name: Set up Google Cloud authentication
       uses: google-github-actions/auth@v0
       with:
@@ -35,6 +35,7 @@ jobs:
     # Déployer sur Google Cloud (ici en utilisant Google App Engine)
     - name: Deploy to Google Cloud
       run: |
-        gcloud config set project ${{ secrets.GCP_PROJECT_ID }}
-        gcloud app browse
-        gcloud app deploy
+        gcloud config set project ${{ secrets.GCP_PROJECT_ID }}  # Configurer le projet Google Cloud
+        gcloud app deploy  # Déployer l'application sur Google App Engine
+        gcloud app browse  # Ouvrir l'application déployée dans le navigateur
+
