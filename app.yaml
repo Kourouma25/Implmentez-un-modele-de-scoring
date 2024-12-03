@@ -1,0 +1,13 @@
+runtime: python39  # Utilise Python 3.9
+
+entrypoint: gunicorn -b :$PORT main:app  # Lance l'application avec gunicorn (assurez-vous que 'main' correspond à votre fichier Python)
+
+env_variables:
+  FLASK_ENV: "production"  # (facultatif) définit l'environnement Flask
+
+handlers:
+  - url: /static
+    static_dir: static  # Si vous avez des fichiers statiques dans un dossier 'static'
+
+  - url: /.*
+    script: auto  # Traite toutes les autres requêtes avec l'application Flask
