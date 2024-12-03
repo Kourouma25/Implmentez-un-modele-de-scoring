@@ -3,7 +3,7 @@ import pandas as pd
 from main import app
 
 # Charger les données depuis le CSV
-data = pd.read_csv('fichier_testeAPI.csv')
+data = pd.read_csv('model_entrainer/fichier_testeAPI.csv')
 
 # Convertir la première ligne en dictionnaire
 donne_predire = data.iloc[0, :].to_dict()
