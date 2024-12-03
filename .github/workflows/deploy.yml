@@ -3,39 +3,41 @@ name: Deploy to Google Cloud
 on:
   push:
     branches:
-      - main  # Déclenche l'action lorsque des changements sont poussés sur la branche 'main'
+      - main  # Déclenche l'action sur les push dans la branche 'main'
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-    
-    # Checkout le code source
-    - name: Checkout code
+    # Étape 1 : Récupérer le code source
+    - name: Checkout source code
       uses: actions/checkout@v3
 
-    # Set up Python environment
+    # Étape 2 : Configurer l'environnement Python
     - name: Set up Python 3.9
       uses: actions/setup-python@v4
       with:
         python-version: 3.9
 
-    # Installer les dépendances
+    # Étape 3 : Installer les dépendances
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    # Authentification avec Google Cloud
-    - name: Set up Google Cloud authentication
+    # Étape 4 : Configurer l'authentification Google Cloud
+    - name: Authenticate to Google Cloud
       uses: google-github-actions/auth@v0
       with:
-        credentials_json: ${{ secrets.GCP_CREDENTIALS }} # Ajoutez votre clé JSON dans les secrets GitHub
-    
-    # Déployer sur Google Cloud (ici en utilisant Google App Engine)
-    - name: Deploy to Google Cloud
-      run: |
-        gcloud config set project ${{ secrets.GCP_PROJECT_ID }}  # Configurer le projet Google Cloud
-        gcloud app deploy  # Déployer l'application sur Google App Engine
-        gcloud app browse  # Ouvrir l'application déployée dans le navigateur
+        credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+
+    # Étape 5 : Configurer le projet Google Cloud
+    - name: Set Google Cloud project
+      run: gcloud config set project ${{ secrets.GCP_PROJECT_ID }}
+
+    # Étape 6 : Déployer sur Google App Engine
+    - name: Deploy to Google App Engine
+      run: gcloud app deploy --quiet
+
 
