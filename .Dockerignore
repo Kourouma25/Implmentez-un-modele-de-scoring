@@ -1,0 +1,15 @@
+# Ignorer les fichiers compilés Python
+*.pyc
+*.pyo
+*.pyd
+
+# Ignorer les répertoires spécifiques
+__pycache__
+pytest_cache
+.idea
+.vscode
+.env
+
+# Ne pas inclure Dockerfile ou .dockerignore dans l'image
+Dockerfile
+.dockerignore
