@@ -1,4 +1,4 @@
-runtime: python39  # Utilise Python 3.9
+runtime: python39  
 
 entrypoint: gunicorn -b :$PORT main:app  # Lance l'application avec gunicorn (assurez-vous que 'main' correspond à votre fichier Python)
 
