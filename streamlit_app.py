@@ -1,8 +1,9 @@
+
 import streamlit as st
 import pandas as pd
 import requests
 
-# URL de l'API Flask déployée (remplacez ceci par l'URL de votre propre API)
+# URL de l'API Flask déployée
 API_URL = "https://projet-7-modele-de-scoring.ew.r.appspot.com/predire"
 
 def envoyer_pour_prediction(donnees):
@@ -45,6 +46,18 @@ def main():
                 if resultats:
                     st.subheader("Résultats de la prédiction :")
                     st.write(resultats["resultats"])  # Affichage des résultats retournés par l'API
+                    
+                    # Ajouter un bouton pour télécharger les résultats
+                    st.subheader("Télécharger les résultats")
+                    # Convertir les résultats en DataFrame
+                    resultats_df = pd.DataFrame([resultats["resultats"]])
+                    csv = resultats_df.to_csv(index=False).encode('utf-8')
+                    st.download_button(
+                        label="Télécharger en CSV",
+                        data=csv,
+                        file_name="resultats_prediction.csv",
+                        mime="text/csv"
+                    )
         except Exception as e:
             st.error(f"Erreur lors de la lecture du fichier : {str(e)}")
 
