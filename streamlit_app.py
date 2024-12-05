@@ -3,7 +3,7 @@ import pandas as pd
 import requests
 
 # URL de l'API Flask déployée (remplacez ceci par l'URL de votre propre API)
-API_URL = "https://mon-projet7flask-225404997464.europe-west9.run.app/predire"
+API_URL = "https://projet-7-modele-de-scoring.ew.r.appspot.com/predire"
 
 def envoyer_pour_prediction(donnees):
     """Envoie les données à l'API Flask et récupère les prédictions."""
