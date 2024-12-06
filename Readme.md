@@ -44,3 +44,38 @@ Développée avec FastAPI et permet d’envoyer des données client sous format 
 
 Environnement utilisé : Google cloud consosole.
 Processus automatisé via un workflow CI/CD comprenant et tests unitaires avant déploiement.
+
+
+## Guide de Développement et Déploiement d'une API Flask sur Google Cloud avec GitHub
+
+Ce guide explique comment développer, versionner, tester, et déployer une API Flask sur Google Cloud, tout en utilisant GitHub pour le versionnement et les commits pertinents.
+
+* Creation d'un projet (nom_du_projet) 
+- mkdir nom_du_projet
+- cd nom_du_projet
+
+* creation d'un environnement virtuel (python -m env nom_environnement) + activation .\nom_environnement\Scripts\activate
+* installer Google cloud sdk 
+- gcloud config set project [PROJECT_ID]
+
+* installer git bash + creation compte github 
+- git init (nitialisez Git dans le répertoire)
+
+**Création des fichiers essentiels**
+
+* ajout fichier .github\workflows deploy.yml
+- mkdir -p .github/workflows
+* requirements.txt ou il ya les dependance necessaire
+* ajout d'un fichier pour le test 
+* ajout Readme
+* Configurer les secrets GitHub 
+- GCP_CREDENTIALS : fichier JSON d'authentification pour Google Cloud. on le trouve dans google cloud console IAM & Admin > Service Accounts
+- GCP_PROJECT_ID : L'ID de du projet Google Cloud.
+* construction de l'API (main.py)
+- python main.py (nous donne le lien locale)
+
+après chaque modification, on effectue des commits pertinents ci-dessous
+git add  nom_ajouter
+git commit -m "Description des modifications"
+git push origin main
+
