@@ -75,6 +75,7 @@ Ce guide explique comment développer, versionner, tester, et déployer une API 
 - python main.py (nous donne le lien locale)
 
 après chaque modification, on effectue des commits pertinents ci-dessous
+git status
 git add  nom_ajouter
 git commit -m "Description des modifications"
 git push origin main
