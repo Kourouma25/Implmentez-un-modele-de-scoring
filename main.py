@@ -22,19 +22,19 @@ def predire():
     try:
         # Récupérer les données envoyées dans la requête
         donnees = request.json
-        
+
         # Convertir en DataFrame
         donnees_df = pd.DataFrame([donnees])
-        
+
         # Prédiction avec le modèle
         predictions = model_enregistre.predict(donnees_df)
-        
+
         # Retourner les résultats
         resultats = donnees  # Données envoyées
         resultats['prediction'] = int(predictions[0])  # Ajouter la prédiction
-        
+
         return jsonify({"resultats": resultats})
-    
+
     except Exception as e:
         return jsonify({"erreur": str(e)}), 400
 
@@ -42,3 +42,4 @@ def predire():
 # Lancer l'application
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000)
+

@@ -3,9 +3,10 @@ pandas
 pydantic
 joblib
 gunicorn
-numpy
 scikit-learn
 lightgbm
 waitress
 pytest
 requests
+evidently
+numpy

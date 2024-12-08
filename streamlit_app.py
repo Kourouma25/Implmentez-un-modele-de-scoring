@@ -32,20 +32,20 @@ def main():
             # Lecture du fichier CSV
             donnees = pd.read_csv(fichier)
             st.subheader("Aperçu des données chargées :")
-            st.write(donnees.head())  # Afficher un aperçu des données
+            st.write(donnees.head())  
 
             # Lorsque l'utilisateur appuie sur le bouton "Lancer la prédiction"
             if st.button("Lancer la prédiction"):
                 st.write("Envoi des données à l'API pour prédiction...")  
 
                 # Nous envoyons les données (en prenant la première ligne comme exemple)
-                donnees_a_predire = donnees.iloc[0, :].to_dict()  # Conversion de la première ligne en dictionnaire
-                resultats = envoyer_pour_prediction(donnees_a_predire)  # Appel à l'API Flask
+                donnees_a_predire = donnees.iloc[0, :].to_dict()  
+                resultats = envoyer_pour_prediction(donnees_a_predire)  
                 
                 # Si nous avons des résultats, on les affiche
                 if resultats:
                     st.subheader("Résultats de la prédiction :")
-                    st.write(resultats["resultats"])  # Affichage des résultats retournés par l'API
+                    st.write(resultats["resultats"])  
                     
                     # Ajouter un bouton pour télécharger les résultats
                     st.subheader("Télécharger les résultats")
