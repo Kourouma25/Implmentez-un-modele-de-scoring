@@ -5,7 +5,7 @@ import joblib
 
 # Charger les données de test
 data = pd.read_csv('donnee_test/fichier_testeAPI.csv')
-donne_predire = data.iloc[0, :].to_dict()
+donne_predire = data.iloc[0, :]
 # Charger le modèle
 model_enregistre = joblib.load('model_entrainer/lgbm_model.pkl')
 
