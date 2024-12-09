@@ -31,7 +31,8 @@ def predire():
 
         # Retourner les résultats
         prediction_proba = model_enregistre.predict_proba(donnees_df)
-        resultats['score'] = int(prediction_proba[0])
+        resultats={}
+        resultats['score'] = (prediction_proba[0])
 
         #resultats = donnees  # Données envoyées
         resultats['prediction'] = int(predictions[0])  # Ajouter la prédiction
