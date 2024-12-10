@@ -31,10 +31,10 @@ def predire():
 
         # Retourner les résultats
         prediction_proba = model_enregistre.predict_proba(donnees_df)
-        resultats={}
-        resultats['score'] = (prediction_proba[0])
 
-        #resultats = donnees  # Données envoyées
+        # Convertir le tableau ndarray en une liste normale Python
+        resultats = {}
+        resultats['score'] = prediction_proba[0].tolist()  # Convertir ndarray en liste
         resultats['prediction'] = int(predictions[0])  # Ajouter la prédiction
 
         return jsonify({"resultats": resultats})
@@ -46,4 +46,5 @@ def predire():
 # Lancer l'application
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000)
+
 
