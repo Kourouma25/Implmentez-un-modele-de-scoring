@@ -2,7 +2,7 @@
 
 ## Présentation du projet
 
-Ce projet consiste à développer un modèle de scoring capable de prédire la probabilité de remboursement d’un crédit par un client. Le modèle s’appuie sur des données variées et vise à fournir une prédiction automatique tout en répondant à un besoin accru de transparence. Un dashboard interactif a également été conçu pour permettre aux gestionnaires de relation client de mieux expliquer les décisions prises par le modèle et d'améliorer la connaissance client.
+Ce projet consiste à développer un modèle de scoring capable de prédire la probabilité de remboursement d’un crédit par un client. Le modèle s’appuie sur des données variées et vise à fournir une prédiction automatique tout en répondant à un besoin accru de transparence. 
 
 ## Source des données
 
@@ -38,7 +38,7 @@ Le modèle repose sur un algorithme supervisé de type classification (LightGBM 
 
 ## API de prédiction
 
-Développée avec FastAPI et permet d’envoyer des données client sous format JSON et de recevoir une prédiction en retour.
+Développée avec Flask et permet d’envoyer des données client sous format JSON et de recevoir une prédiction en retour.
 
 ## Déploiement
 
