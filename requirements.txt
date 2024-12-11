@@ -8,5 +8,4 @@ lightgbm
 waitress
 pytest
 requests
-evidently
 numpy

@@ -1,4 +1,3 @@
-
 import streamlit as st
 import pandas as pd
 import requests
@@ -22,7 +21,7 @@ def envoyer_pour_prediction(donnees):
 
 def main():
     st.title("Application de Prédiction Bancaire")
-    st.write("Téléchargez un fichier CSV contenant les données des clients pour obtenir des prédictions.")
+    st.write("Téléchargez un fichier CSV contenant les données des clients pour obtenir une prédiction et une probabilité.")
 
     # Téléchargement de fichier par l'utilisateur
     fichier = st.file_uploader("Choisissez un fichier CSV", type=["csv"])
@@ -32,34 +31,33 @@ def main():
             # Lecture du fichier CSV
             donnees = pd.read_csv(fichier)
             st.subheader("Aperçu des données chargées :")
-            st.write(donnees.head())  
+            st.write(donnees.head())
+
+            # Vérifier si le fichier contient des données
+            if donnees.empty:
+                st.warning("Le fichier téléchargé est vide. Veuillez charger un fichier valide.")
+                return
 
             # Lorsque l'utilisateur appuie sur le bouton "Lancer la prédiction"
             if st.button("Lancer la prédiction"):
-                st.write("Envoi des données à l'API pour prédiction...")  
+                st.write("Envoi des données à l'API pour prédiction...")
 
-                # Nous envoyons les données (en prenant la première ligne comme exemple)
-                donnees_a_predire = donnees.iloc[0, :].to_dict()  
-                resultats = envoyer_pour_prediction(donnees_a_predire)  
-                
+                # Sélectionner la première ligne et convertir en dictionnaire
+                donnees_a_predire = donnees.iloc[0].to_dict()
+                resultats = envoyer_pour_prediction(donnees_a_predire)
+
                 # Si nous avons des résultats, on les affiche
                 if resultats:
                     st.subheader("Résultats de la prédiction :")
-                    st.write(resultats["resultats"])  
-                    
-                    # Ajouter un bouton pour télécharger les résultats
-                    st.subheader("Télécharger les résultats")
-                    # Convertir les résultats en DataFrame
-                    resultats_df = pd.DataFrame([resultats["resultats"]])
-                    csv = resultats_df.to_csv(index=False).encode('utf-8')
-                    st.download_button(
-                        label="Télécharger en CSV",
-                        data=csv,
-                        file_name="resultats_prediction.csv",
-                        mime="text/csv"
-                    )
+                    prediction = resultats["resultats"]["prediction"]
+                    probabilites = resultats["resultats"]["score"]
+
+                    st.write(f"Prédiction : {prediction}")
+                    st.write(f"Probabilités : {probabilites}")
+                else:
+                    st.error("Aucun résultat n'a été obtenu.")
         except Exception as e:
-            st.error(f"Erreur lors de la lecture du fichier : {str(e)}")
+            st.error(f"Erreur lors de la lecture ou du traitement du fichier : {str(e)}")
 
 if __name__ == "__main__":
     main()

@@ -10,11 +10,6 @@ donne_predire = data.iloc[0: 1,:]
 model_enregistre = joblib.load('model_entrainer/lgbm_model.pkl')
 
 
-
-
-
-
-
 def test_predire():
 
     score = model_enregistre.predict_proba(donne_predire)[0]
@@ -24,7 +19,3 @@ def test_predire():
     assert score <= 1
     """Test pour vérifier la route de prédiction"""
     
-
-
-
-

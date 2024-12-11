@@ -1,16 +1,9 @@
-
 # Ignorer l'environnement virtuel
 env4/
 
-# Ignorer les fichiers Python compilés
+# Ignorer les fichiers .pyc
 *.pyc
-*.pyo
 
-# Ignorer les fichiers d'IDE comme Visual Studio Code
-.vscode/
-
-# Ignorer les fichiers de logs
-*.log
 
 
 
