@@ -5,7 +5,7 @@ import pandas as pd
 app = Flask(__name__)
 
 # Charger le modèle
-model_enregistre = joblib.load('model_entrainer/lgbm_model.pkl')
+model_enregistre = joblib.load('model_entrainer/lgbm_model0.pkl')
 
 # Route de base
 @app.route("/", methods=["GET"])
