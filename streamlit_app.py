@@ -43,7 +43,7 @@ def main():
                 st.write("Envoi des données à l'API pour prédiction...")
 
                 # Sélectionner la première ligne et convertir en dictionnaire
-                donnees_a_predire = donnees.iloc[0].to_dict()
+                donnees_a_predire = donnees.iloc[3].to_dict()
                 resultats = envoyer_pour_prediction(donnees_a_predire)
 
                 # Si nous avons des résultats, on les affiche
@@ -61,3 +61,10 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+
+
+
+
