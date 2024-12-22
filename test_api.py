@@ -7,7 +7,7 @@ import joblib
 data = pd.read_csv('donnee_test/fichier_testeAPI.csv')
 donne_predire = data.iloc[0: 1,:]
 # Charger le modèle
-model_enregistre = joblib.load('model_entrainer/lgbm_model0.pkl')
+model_enregistre = joblib.load('lgbm_model1.pkl')
 
 
 def test_predire():

@@ -5,12 +5,15 @@ import pandas as pd
 app = Flask(__name__)
 
 # Charger le modèle
-model_enregistre = joblib.load('model_entrainer/lgbm_model0.pkl')
+model_enregistre = joblib.load('lgbm_model1.pkl')
+
+# Définir le seuil de probabilité
+SEUIL_PROBA = 0.5  
 
 # Route de base
 @app.route("/", methods=["GET"])
 def accueil():
-    return jsonify({"message": "Bienvenue sur l'API de prédiction bancaire"})
+    return jsonify({"message": "Bienvenue sur l'API de prédiction de scoring crédit"})
 
 # Route de prédiction
 @app.route("/predire", methods=["POST"])
@@ -34,8 +37,15 @@ def predire():
 
         # Convertir le tableau ndarray en une liste normale Python
         resultats = {}
-        resultats['score'] = prediction_proba[0].tolist()  # Convertir ndarray en liste
-        resultats['prediction'] = int(predictions[0])  # Ajouter la prédiction
+        prob_defaut = prediction_proba[0][1]  # Probabilité de défaut (classe 1)
+
+        # Appliquer le seuil pour la prédiction
+        if prob_defaut >= SEUIL_PROBA:
+            resultats['prediction'] = 1  # Non accordé
+        else:
+            resultats['prediction'] = 0  # Accordé
+
+        resultats['score'] = prob_defaut  # Probabilité de défaut
 
         return jsonify({"resultats": resultats})
 
@@ -46,5 +56,9 @@ def predire():
 # Lancer l'application
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000)
+
+
+
+
 
 
