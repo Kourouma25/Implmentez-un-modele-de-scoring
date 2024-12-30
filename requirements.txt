@@ -9,3 +9,5 @@ waitress
 pytest
 requests
 numpy
+shap
+plotly 
