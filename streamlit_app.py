@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 model = joblib.load('lgbm_model1.pkl')
 
 # URL de l'API Flask déployée
-API_URL = "http://192.168.1.10:5000/predire"
+API_URL = "https://projet-7-modele-de-scoring.ew.r.appspot.com/predire"
 
 # Fonction pour envoyer les données à l'API
 def envoyer_pour_prediction(donnees):
