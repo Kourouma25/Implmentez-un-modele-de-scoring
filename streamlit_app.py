@@ -26,14 +26,14 @@ def envoyer_pour_prediction(donnees):
         st.error(f"Erreur lors de l'appel à l'API : {str(e)}")
         return None
 
-# Fonction pour afficher la jauge avec un message explicatif
 def afficher_gauge(prediction, prob):
     color = "green" if prediction == 0 else "red"
 
+    # Affichage du message basé sur la prédiction
     if prediction == 0:
-        st.markdown('<p style="color:green; font-size:20px;">Le prêt est <b>accordé</b>.</p>', unsafe_allow_html=True)
+        st.markdown('<p style="color:green; font-size:20px;">✅ Le prêt est <b>accordé</b>.</p>', unsafe_allow_html=True)
     else:
-        st.markdown('<p style="color:red; font-size:20px;">Le prêt est <b>non accordé</b>.</p>', unsafe_allow_html=True)
+        st.markdown('<p style="color:red; font-size:20px;">❌ Le prêt est <b>non accordé</b>.</p>', unsafe_allow_html=True)
 
     prob_defaut = prob * 100
 
@@ -50,7 +50,7 @@ def afficher_gauge(prediction, prob):
             ]
         },
     ))
-
+  
     return fig, prob_defaut
 
 # Fonction pour afficher l'importance spécifique des caractéristiques avec SHAP
@@ -163,12 +163,28 @@ def main():
             prob = st.session_state.prob
 
             col1, col2 = st.columns(2)
+
+
+
             with col1:
                 st.subheader("Résultat de la Prédiction")
                 fig_gauge, prob_defaut = afficher_gauge(prediction, prob)
                 st.plotly_chart(fig_gauge)
 
+                # Ajout d'une légende 
+                st.markdown(
+                    """
+                    <p style="font-size:18px;">
+        
+        
+                    <span style="color:green;">● Accordé</span> &nbsp;&nbsp;&nbsp;
+                    <span style="color:red;">● Non accordé</span>
+                    </p>
+                    """,
+                    unsafe_allow_html=True
+                      )
                 st.markdown(f"**Probabilité de non-remboursement (Défaut):** {prob*100:.2f}%")
+
 
             with col2:
                 st.subheader("Importance des Caractéristiques")
